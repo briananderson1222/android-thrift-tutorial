@@ -6,4 +6,4 @@
     android:divider="@android:color/transparent"
     android:dividerHeight="0dp"
     android:background="#cccc"
-    tools:context="com.solsticemobile.thrifttutorial.NavigationDrawerFragment" />
+    tools:context="com.solsticemobile.thrifttutorial.fragments.NavigationDrawerFragment" />

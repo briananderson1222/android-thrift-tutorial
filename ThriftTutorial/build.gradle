@@ -17,7 +17,7 @@ android {
     buildToolsVersion "18.1.1"
 
     defaultConfig {
-        minSdkVersion 7
+        minSdkVersion 11
         targetSdkVersion 19
     }
 }
@@ -28,4 +28,5 @@ dependencies {
     compile 'org.apache.thrift:libthrift:0.9.1'
     compile 'javax.annotation:jsr250-api:1.0'
     compile 'org.slf4j:slf4j-log4j12:1.7.5'
+    compile 'com.google.android.gms:play-services:4.0.30'
 }
