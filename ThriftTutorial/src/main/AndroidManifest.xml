@@ -24,7 +24,7 @@
         android:theme="@style/AppTheme" >
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
         <activity
-            android:name="com.solsticemobile.thrifttutorial.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,14 +32,14 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name="com.solsticemobile.thrifttutorial.gcm.GcmBroadcastReceiver"
+            android:name=".gcm.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <category android:name="com.solsticemobile.thrifttutorial" />
             </intent-filter>
         </receiver>
-        <service android:name="com.solsticemobile.thrifttutorial.gcm.GcmIntentService" />
+        <service android:name=".gcm.GcmIntentService" />
     </application>
 
 </manifest>

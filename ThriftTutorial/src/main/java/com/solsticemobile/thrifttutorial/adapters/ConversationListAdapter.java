@@ -2,6 +2,7 @@ package com.solsticemobile.thrifttutorial.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +23,8 @@ public class ConversationListAdapter extends BaseAdapter {
     private List<ChatMessage> mDataSource;
     private LayoutInflater mInflater;
 
-    public ConversationListAdapter(Context c, List<ChatMessage> conversationList) {
+    public ConversationListAdapter(Context c) {
         mContext = c;
-        mDataSource = conversationList;
         mInflater = (LayoutInflater)c.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -34,7 +34,7 @@ public class ConversationListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mDataSource.size();
+        return (mDataSource != null) ? mDataSource.size() : 0;
     }
 
     @Override
@@ -68,6 +68,7 @@ public class ConversationListAdapter extends BaseAdapter {
 
     public class HolderItem {
 
+        TextView senderView, recipientView;
         TextView messageView;
 
         public HolderItem(View view, ChatMessage chatMessage) {
@@ -76,16 +77,26 @@ public class ConversationListAdapter extends BaseAdapter {
         }
 
         private void initConversationListItemWithView(HolderItem holder, View view) {
+            holder.senderView = (TextView) view.findViewById(R.id.sender);
+            holder.recipientView = (TextView) view.findViewById(R.id.recipient);
             holder.messageView = (TextView) view.findViewById(R.id.message);
         }
 
         public void populateCellWithChatMessage(ChatMessage chatMessage) {
-            setMessage(chatMessage.content);
+            boolean outgoing = chatMessage.sender.equals(mContext.getString(R.string.title_brian));
+            senderView.setText("");
+            recipientView.setText("");
+            if (outgoing) {
+                senderView.setText(chatMessage.sender);
+                messageView.setGravity(Gravity.RIGHT);
+            }
+            else {
+                recipientView.setText(chatMessage.sender);
+                messageView.setGravity(Gravity.LEFT);
+            }
+            messageView.setText(chatMessage.content);
         }
 
-        public  void setMessage(String message) {
-            messageView.setText(message);
-        }
     }
 
 }

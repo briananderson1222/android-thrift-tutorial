@@ -68,6 +68,7 @@ public class GcmManager {
      * the Google Play Store or enable it in the device's system settings.
      */
     public boolean checkPlayServices(Activity activity) {
+        if (activity == null) return false;
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity);
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {

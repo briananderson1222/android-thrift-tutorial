@@ -16,17 +16,17 @@ public class MainActivity extends ActionBarActivity
 
     final static String TAG = "MainActivity";
 
-    private CharSequence mTitle = "Brian";
+    private CharSequence mTitle;
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mTitle = getTitle();
         setContentView(R.layout.activity_main);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -44,21 +44,20 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        String conversationTitle = mTitle.toString();
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, ComposeMessageFragment.newInstance(position + 1, conversationTitle))
+                .replace(R.id.container, ComposeMessageFragment.newInstance(position + 1))
                 .commit();
     }
 
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_brian);
+                mTitle = getString(R.string.title_kelton);
                 break;
             case 2:
-                mTitle = getString(R.string.title_kelton);
+                mTitle = getString(R.string.title_brian);
                 break;
         }
     }
